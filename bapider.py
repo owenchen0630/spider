@@ -24,4 +24,9 @@ request = urllib2.Request(url,headers = headers)
 response = urllib2.urlopen(request)
 #将页面转化为UTF-8编码
 pageCode = response.read().decode('utf-8')
-print(page.code)
+#重点在于如何使用正则表达式进行匹配
+pattern = re.compile('<span>.*?</span>',re.S)
+items = re.findall(pattern, pageCode)
+for item in items:
+    if not re.search('img src', item):
+        print(item)
