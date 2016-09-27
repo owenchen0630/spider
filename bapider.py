@@ -4,7 +4,7 @@ import urllib2
 import re
 import thread
 import time
-
+from bs4 import BeautifulSoup
 
 def getStories():
     user_agent = 'Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)'
@@ -19,9 +19,12 @@ def getStories():
     #将页面转化为UTF-8编码
     pageCode = response.read().decode('utf-8')
     #重点在于如何使用正则表达式进行匹配
-    pattern = re.compile('<span>(.*?)</span>', re.S)
+#    pattern = re.compile('<span>(.*?)</span>', re.S)
     #pattern = re.compile(u"<span>.*?[\u4e00-\u9fa5]</span>", re.S)
-    items = re.findall(pattern, pageCode)
+#    items = re.findall(pattern, pageCode)
+    soup = BeautifulSoup(pageCode,
+                     'html.parser',
+                     from_encoding='utf-8')
     for item in items:
         if not re.search('img src', item):
             if not re.search("a style", item):
