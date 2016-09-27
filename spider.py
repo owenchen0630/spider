@@ -20,7 +20,7 @@ class QSBK:
     #传入某一页的索引获得页面代码
     def getPage(self,pageIndex):
         try:
-            url = 'http://www.qiushibaike.com/hot/' + str(pageIndex)
+            url = 'http://www.qiushibaike.com/hot/page/%s/?s=4916034' % str(pageIndex)
             #构建请求的request
             request = urllib2.Request(url,headers = self.headers)
             #利用urlopen获取页面代码

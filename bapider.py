@@ -19,12 +19,13 @@ def getStories():
     #将页面转化为UTF-8编码
     pageCode = response.read().decode('utf-8')
     #重点在于如何使用正则表达式进行匹配
-    pattern = re.compile('<span>.*?</span>', re.S)
+    pattern = re.compile('<span>(.*?)</span>', re.S)
     #pattern = re.compile(u"<span>.*?[\u4e00-\u9fa5]</span>", re.S)
     items = re.findall(pattern, pageCode)
     for item in items:
         if not re.search('img src', item):
-            print(item)
+            if not re.search("a style", item):
+                print(item)
 
 I = raw_input()
 for pageIndex in range(1,int(I)+1):
