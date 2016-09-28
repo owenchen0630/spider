@@ -25,6 +25,14 @@ def getStories():
     for item in items:
         if not re.search('img src', item):
             print(item)
+#it also can use bs4
+from bs4 import beautifulsoup
+soup = beautifulsoup(html_doc,
+                     'html_parser',
+                     encoding='utf-8')
+links = soup.find_all('span', class_ = '')
+# end 
+# www.qiushibaike.com 
 
 I = raw_input()
 for pageIndex in range(1,int(I)+1):
